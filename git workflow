@@ -1,17 +1,17 @@
 # Clone the repository
-git clone https://github.com/eventually1/temp.git
-cd temp
+git clone https://github.com/eventually11/temp2.git
+cd temp2
 
 # Pull the latest code
 git pull origin main
 
 # Push code (Need token)
-git remote set-url origin http
+git remote set-url origin https://token@github.com/eventually11/temp2
 git push origin main
 
 # Create and switch branch
 git branch
-git branch Ferr
+git branch Ferry
 
 # Work on the master (main) branch
 git add .
