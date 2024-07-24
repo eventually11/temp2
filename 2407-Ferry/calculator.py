@@ -39,10 +39,12 @@ class AdvancedCalculatorApp:
             try:
                 self.equation.set(str(eval(current_equation)))
             except Exception as e:
+                # If there is an error, display "error" in the entry field
                 self.equation.set("error")
         elif button == 'C':
             self.equation.set("")
         else:
+            # or any other button clicked, append the clicked button's text to the current input
             self.equation.set(current_equation + button)
 
 if __name__ == "__main__":
