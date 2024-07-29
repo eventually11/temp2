@@ -6,10 +6,10 @@ from hypothesis.strategies import integers, text, lists, floats, composite, date
 
 fake = Faker()
 
-# 使用 Hypothesis 的 composite 装饰器定义一个复合策略，用于生成 saas_partner_order 的数据
+
 @composite
 def saas_partner_order_strategy(draw):
-    # 定义各种类型的 mock 数据
+  
     saas_partner_order_type = {
         'code': draw(integers(min_value=1000, max_value=9999)),
         'type_name': draw(text(min_size=1)),
@@ -54,7 +54,7 @@ def saas_partner_order_strategy(draw):
         'description': draw(text(min_size=1))
     }
 
-    # 返回一个完整的 saas_partner_order 对象
+  
     return {
         'id': draw(integers(min_value=1000, max_value=9999)),
         'tenant': draw(integers(min_value=1, max_value=100)),
@@ -79,11 +79,11 @@ def saas_partner_order_strategy(draw):
         'status_group': saas_partner_task_status_group
     }
 
-# 使用 Hypothesis 的 given 装饰器来生成测试数据
+
 @given(saas_partner_order_strategy())
-@settings(max_examples=10)  # 可以根据需要调整生成的示例数量
+@settings(max_examples=10) 
 def test_saas_partner_order_structure(order):
-    # 验证每个字段的数据类型
+
     assert isinstance(order['id'], int)
     assert isinstance(order['tenant'], int)
     assert isinstance(order['flow'], int)
@@ -106,12 +106,12 @@ def test_saas_partner_order_structure(order):
     assert isinstance(order['end_task_validation'], dict)
     assert isinstance(order['status_group'], dict)
 
-    # 验证数值范围
+ 
     assert order['id'] >= 1000 and order['id'] <= 9999
     assert order['tenant'] >= 1 and order['tenant'] <= 100
     assert order['flow'] >= 1 and order['flow'] <= 10
     assert order['dispatch_pool'] >= 1 and order['dispatch_pool'] <= 5
 
-# 运行测试
+
 if __name__ == '__main__':
     pytest.main()
